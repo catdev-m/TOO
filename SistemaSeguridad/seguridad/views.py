@@ -13,5 +13,6 @@ def login(request):
 def forgot(request):
 	return render(request,"seguridad/forgot-password.html")
 
-
+def primer(request):
+	return render(request,"seguridad/primerIngreso.html")
 	

@@ -142,7 +142,7 @@ class MaritalStatusLu(models.Model):
 
 
 class Prueba(models.Model):
-    id = models.BigIntegerField(blank=True, null=True)
+    id = models.BigIntegerField( primary_key=True, blank=True, null=True)
     descripcion = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
