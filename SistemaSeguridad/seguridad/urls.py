@@ -10,7 +10,7 @@ urlpatterns = [
 
 seguridad_patterns =[
 	path('login.html/',login,name='login'),
-	path('forgot-password.html/',forgot,name='forgot')
-
+	path('forgot-password.html/',forgot,name='forgot'),
+	path('index.html/',index,name='index'),
 
 ]
