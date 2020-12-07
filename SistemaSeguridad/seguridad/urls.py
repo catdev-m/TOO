@@ -1,15 +1,15 @@
 from django.urls import path
-
-
-from .views import index, login, forgot, primer, registrar
+#from django.contrib.auth.models import User
+from .views import index, forgot, primer, registrar, login
 
 
 urlpatterns = [
-    path('', index),
+   path('',login, name='login') 
 ]
 
 seguridad_patterns =[
-	path('login.html/',login,name='login'),
+	path('index.html/', index, name='login'),
+	#path('login.html/',login,name='login'),
 	path('forgot-password.html/',forgot,name='forgot'),
 	path('index.html/',index,name='index'),
 	path('primerIngreso.html/',primer,name='primer'),

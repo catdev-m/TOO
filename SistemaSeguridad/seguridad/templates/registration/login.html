@@ -1,0 +1,41 @@
+{% extends 'seguridad/login.html' %}
+{% load static %}
+{% block content %}
+
+{% if form.errors %}
+<p>Usuario o contraseña incorrectos, prueba de nuevo.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Tu cuenta no tiene acceso a esta página. Para proceder,
+      inicie sesión con una cuenta que tenga acceso.</p>
+    {% else %}
+    <p>Inicie sesión para ver esta página.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+<div>
+  <input type="text" name="username" autofocus maxlength="254" required
+              id="id_username" class="form-control" placeholder="Nombre de usuario"/>
+</div>
+<br>
+<div>
+  <input type="password" name="password" required
+  id="id_password" class="form-control" placeholder="Contraseña"/>
+  
+</div>
+<br>
+<div>
+  <p><input type="submit" class="btn btn-primary btn-block" value="Iniciar Sesión"></p>
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+{% endblock %}
