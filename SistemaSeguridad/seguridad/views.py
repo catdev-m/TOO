@@ -15,4 +15,7 @@ def forgot(request):
 
 def primer(request):
 	return render(request,"seguridad/primerIngreso.html")
+
+def registrar(request):
+	return render(request,"seguridad/register.html")
 	

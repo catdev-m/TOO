@@ -1,7 +1,7 @@
 from django.urls import path
 
 
-from .views import index, login, forgot, primer 
+from .views import index, login, forgot, primer, registrar
 
 
 urlpatterns = [
@@ -13,5 +13,5 @@ seguridad_patterns =[
 	path('forgot-password.html/',forgot,name='forgot'),
 	path('index.html/',index,name='index'),
 	path('primerIngreso.html/',primer,name='primer'),
-
+	path('register.html/',registrar,name='registrar'),
 ]
