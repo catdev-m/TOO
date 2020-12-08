@@ -23,5 +23,18 @@ seguridad_patterns =[
 	auth_views.PasswordResetDoneView.as_view(template_name="registration/password_reset_done.html"),
 	name="password_reset_done"),
 
+	#Esto quizás lo deba subir al nuevo pero no sirven realmente no se si se necesitan
+	path('reset/<uidb64>/<token>/',
+     auth_views.PasswordResetConfirmView.as_view(template_name="seguridad/cambiarContra.html"), 
+     name="password_reset_confirm"),
+
+    path('reset_password_complete/', 
+        auth_views.PasswordResetCompleteView.as_view(template_name="registration/password_reset_form.html"), 
+        name="password_reset_complete"),
+
+
 #Hasta acá	
+#nueva vista crear usuario 
+	path('registrar',registrar,name='registrar'),
+	
 ]
