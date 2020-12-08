@@ -30,14 +30,16 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [ 
+    'seguridad', #App creada para el sistema de seguridad
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'seguridad', #App creada para el sistema de seguridad
+  
 ]
 
 MIDDLEWARE = [
