@@ -1,0 +1,56 @@
+{% extends "two_factor/_base_focus.html" %}
+{% load i18n %}
+
+{% block content %}
+  <h1>{% block title %}{% trans "Habilitar la autenticación de dos factores" %}{% endblock %}</h1>
+  {% if wizard.steps.current == 'welcome' %}
+    <p>{% blocktrans trimmed %}Está a punto de llevar la seguridad de su cuenta al
+      siguiente nivel. Siga los pasos de este asistente para habilitar dos factores
+      autenticación.{% endblocktrans %}</p>
+  {% elif wizard.steps.current == 'method' %}
+    <p>{% blocktrans trimmed %}Seleccione el método de autenticación que utilizaría
+      le gustaria usar.{% endblocktrans %}</p>
+  {% elif wizard.steps.current == 'generator' %}
+    <p>{% blocktrans trimmed %}Para comenzar a usar un generador de tokens, use su
+      smartphone para escanear el código QR a continuación. Por ejemplo, usa Google
+      Autenticador. Luego, ingrese el token generado por la aplicación.
+        {% endblocktrans %}</p>
+    <p><img src="{{ QR_URL }}" alt="QR Code" /></p>
+  {% elif wizard.steps.current == 'sms' %}
+    <p>{% blocktrans trimmed %}Introduzca el número de teléfono que desea recibir
+      mensajes de texto activados. Este número se validará en el siguiente paso.
+      {% endblocktrans %}</p>
+  {% elif wizard.steps.current == 'call' %}
+    <p>{% blocktrans trimmed %}Please enter the phone number you wish to be called on.
+      This number will be validated in the next step. {% endblocktrans %}</p>
+  {% elif wizard.steps.current == 'validation' %}
+    {% if challenge_succeeded %}
+      {% if device.method == 'call' %}
+        <p>{% blocktrans trimmed %}We are calling your phone right now, please enter the
+          digits you hear.{% endblocktrans %}</p>
+      {% elif device.method == 'sms' %}
+        <p>{% blocktrans trimmed %}We sent you a text message, please enter the tokens we
+          sent.{% endblocktrans %}</p>
+      {% endif %}
+    {% else %}
+      <p class="alert alert-warning" role="alert">{% blocktrans trimmed %}We've
+        encountered an issue with the selected authentication method. Please
+        go back and verify that you entered your information correctly, try
+        again, or use a different authentication method instead. If the issue
+        persists, contact the site administrator.{% endblocktrans %}</p>
+    {% endif %}
+  {% elif wizard.steps.current == 'yubikey' %}
+    <p>{% blocktrans trimmed %}Para identificar y verificar su YubiKey, inserte un
+      token en el campo de abajo. Su YubiKey estará vinculada a su
+      cuenta.{% endblocktrans %}</p>
+  {% endif %}
+
+  <form action="" method="post">{% csrf_token %}
+    {% include "two_factor/_wizard_forms.html" %}
+
+    {# hidden submit button to enable [enter] key #}
+    <input type="submit" value="" class="d-none" />
+
+    {% include "two_factor/_wizard_actions.html" %}
+  </form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "two_factor/_base_focus.html" %}
+{% load i18n %}
+
+{% block content %}
+  <h1>{% block title %}{% trans "Acceso Denegado" %}{% endblock %}</h1>
+
+  <p>{% blocktrans trimmed %}Se obliga a los usuarios a verificar el uso
+    autenticación de dos factores por motivos de seguridad. Necesitas habilitar estos
+    características de seguridad para acceder a esta página.{% endblocktrans %}</p>
+
+  <p>{% blocktrans trimmed %}La autenticación de dos factores no está habilitada para su
+    cuenta. Habilite la autenticación de dos factores para mejorar su
+    seguridad.{% endblocktrans %}</p>
+  <p>
+    <a href="javascript:history.go(-1)"
+       class="float-right btn btn-link">{% trans "Go back" %}</a>
+    <a href="{% url 'two_factor:setup' %}" class="btn btn-primary">
+    {% trans "Habilitar la autenticación de dos factores" %}</a>
+  </p>
+{% endblock %}

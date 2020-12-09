@@ -1,0 +1,24 @@
+{% extends "two_factor/_base_focus.html" %}
+{% load i18n %}
+
+{% block content %}
+  <h1>{% block title %}{% trans "Habilitar la autenticación de dos factores" %}{% endblock %}</h1>
+
+  <p>{% blocktrans trimmed %}Felicitaciones, ha habilitado con éxito los dos factores de
+    autenticación.{% endblocktrans %}</p>
+
+  {% if not phone_methods %}
+    <p><a href="{% url 'two_factor:profile' %}"
+        class="btn btn-block btn-secondary">{% trans "Volver a Seguridad de la cuenta" %}</a></p>
+  {% else %}
+    <p>{% blocktrans trimmed %}Sin embargo, puede suceder que no tenga acceso a
+      su dispositivo token principal. Para habilitar la recuperación de la cuenta, agregue un teléfono
+      número.{% endblocktrans %}</p>
+
+    <a href="{% url 'two_factor:profile' %}"
+        class="float-right btn btn-link">{% trans "Volver a Seguridad de la cuenta" %}</a>
+    <p><a href="{% url 'two_factor:phone_create' %}"
+        class="btn btn-success">{% trans "Agregar el número de teléfono" %}</a></p>
+  {% endif %}
+
+{% endblock %}

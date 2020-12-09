@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,7 +32,10 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [ 
     'seguridad', #App creada para el sistema de seguridad
-    
+    'django_otp',#Para el sistema de autenticacion de dos pasos
+    'django_otp.plugins.otp_static',#Para el sistema de autenticacion de dos pasos
+    'django_otp.plugins.otp_totp',#Para el sistema de autenticacion de dos pasos
+    'two_factor',#Para el sistema de autenticacion de dos pasos
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +51,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -57,7 +61,7 @@ ROOT_URLCONF = 'SistemaSeguridad.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./seguridad/templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,7 +88,6 @@ DATABASES = {
         'PASSWORD': '*Dmej2020$**',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -125,9 +128,35 @@ LOGOUT_REDIRECT_URL = 'login'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+#Para el factor de dos pasos
+TWO_FACTOR_FORCE_OTP_ADMIN = True
+LOGIN_URL = 'two_factor:login' #URL de Login
+#Conexion Para Enviar Correo
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST="smtp.gmail.com"
 EMAIL_USE_TLS=True
 EMAIL_PORT=587
 EMAIL_HOST_USER="csystem205@gmail.com"
 EMAIL_HOST_PASSWORD="alveger2020"
+
+#TWO_FACTOR_CALL_GATEWAY = 'two_factor.gateways.fake.Fake'
+
+#TWO_FACTOR_SMS_GATEWAY = 'two_factor.gateways.fake.Fake'
+
+#LOGGING = {
+#'version': 1,
+#'disable_existing_loggers': False,
+#'handlers': {
+#'console': {
+#'level': 'DEBUG',
+#'class': 'logging.StreamHandler',
+#},
+#},
+#'loggers': {
+#'two_factor': {
+#'handlers': ['console'],
+#'level': 'INFO',
+#}
+#}
+#}
+
