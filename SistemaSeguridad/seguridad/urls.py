@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import index, forgot, primer, registrar, login
+from .views import index, forgot, primer, registrar, login, desbloquear
 app_name='seguridad'
 
 urlpatterns = [
@@ -36,5 +36,6 @@ seguridad_patterns =[
 #Hasta acá	
 #nueva vista crear usuario 
 	path('registrar',registrar,name='registrar'),
+	path('desbloquear',desbloquear,name='desbloquear'),
 	
 ]

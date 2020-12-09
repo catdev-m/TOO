@@ -148,3 +148,20 @@ class Prueba(models.Model):
     class Meta:
         managed = False
         db_table = 'prueba'
+
+class Desbloqueo(models.Model):
+ id = models.AutoField( primary_key=True)
+ mascota = models.CharField(max_length= 20,null = False)
+ colorFavorito = models.CharField(max_length= 20,null= True)
+ nombrePadre = models.CharField(max_length= 20,null= True)
+ numeroViajeroFrecuente = models.CharField(max_length= 20,null= True)
+ primerNumeroTelefonico = models.CharField(max_length= 20,null= True)
+ #colorFavorito = models.CharField(max_length= 20)
+ #nombrePadre = models.CharField(max_length= 20)
+ #númeroViajeroFrecuente = models.CharField(max_length= 20)
+ #primerNumeroTelefonico= models.CharField(max_length= 20)
+ class Meta:
+        ordering = ['mascota']
+ 
+ def __str__(self):
+     return self.mascota

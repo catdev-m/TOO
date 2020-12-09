@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate
 from django.core.mail import send_mail
 from django.conf import settings
 from seguridad.forms import createUserForm
+from seguridad.forms import desbloqueoUsuario
 # Create your views here.
 
 #Vista de la pagina principal
@@ -45,3 +46,14 @@ def registrar(request):
 
 	context={'form':form}
 	return render(request,"seguridad/register.html",context)
+
+def desbloquear(request):
+	form = desbloqueoUsuario
+	
+	if request.method=='NEW':
+		form=desbloqueoUsuario(request.POST)
+		if form.is_valid():
+			form.save()
+
+	context={'form':form}
+	return render(request,"seguridad/desbloquear.html",context)
