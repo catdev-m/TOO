@@ -41,6 +41,14 @@
                                 {% csrf_token %}
                                 <div class="form-group row" >
                                     <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <p> Nombre </p>
+                                     <p>  {{form.first_name}}</p> 
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <p> Apellido </p>
+                                     <p>  {{form.last_name}}</p> 
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
                                         <p> Nombre de Usuario </p>
                                      <p>  {{form.username}}</p> 
                                     </div>
@@ -58,7 +66,6 @@
                                        <p> Confirmar contraseña </p> 
                                         <p> {{form.password2}} </p>
                                     </div>
-                                </div>
                                 <input type="submit" class="btn btn-primary btn-block" value="Crear">
                                 <hr>
                             </form>
