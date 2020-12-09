@@ -34,7 +34,11 @@
   <input type="hidden" name="next" value="{{ next }}" />
 </div>
 </form>
-
+{% for message in messages %}
+<div class="alert-primary"></div>
+      <p id="messages">{{message}}</p>
+</div>
+{% endfor %}
 {# Assumes you setup the password_reset view in your URLconf #}
 <p><a href="{% url 'reset_password' %}">Olvide mi contraseña</a></p>
 <!--Esto es de agregar -->

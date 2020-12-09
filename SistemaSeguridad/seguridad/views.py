@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -7,10 +7,11 @@ from django.core.mail import send_mail
 from django.conf import settings
 from seguridad.forms import createUserForm
 from seguridad.forms import desbloqueoUsuario
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 #Vista de la pagina principal
-
+@login_required
 def index(request):
 	return render(request,"seguridad/index.html")
 
@@ -40,10 +41,13 @@ def registrar(request):
 	form = createUserForm
 	
 	if request.method=='POST':
-		form=UserCreationForm(request.POST)
+		form=createUserForm(request.POST)
 		if form.is_valid():
 			form.save()
+			user = form.cleaned_data.get('username')
+			messages.success(request, 'Cuenta creada para: ' + user)
 
+			return redirect('login')
 	context={'form':form}
 	return render(request,"seguridad/register.html",context)
 
