@@ -35,38 +35,45 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Crear una cuenta</h1>
                             </div>
                             <form class="user" method="POST">
                                 {% csrf_token %}
-                                <div class="form-group row" >
+                                <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <p> Nombre </p>
-                                     <p>  {{form.first_name}}</p> 
+                                         Nombre:&nbsp
+                                     {{form.first_name}}
+                                            
                                     </div>
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <p> Apellido </p>
-                                     <p>  {{form.last_name}}</p> 
+                                    <div class="col-sm-6">
+                                        Apellido:&nbsp
+                                     {{form.last_name}}
                                     </div>
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <p> Nombre de Usuario </p>
-                                     <p>  {{form.username}}</p> 
-                                    </div>
-                                </div>
-                                <div class="form-group" >
-                                  <p>  Correo </p>
-                                   <p>{{form.email}} </p>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                       <p>Contraseña </p> 
-                                    <p>  {{form.password1}} </p>
+                                         Nombre de Usuario:&nbsp
+                                      {{form.username}}
+                                            
                                     </div>
                                     <div class="col-sm-6">
-                                       <p> Confirmar contraseña </p> 
-                                        <p> {{form.password2}} </p>
+                                        Correo:&nbsp
+                                        {{form.email}}
                                     </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                       Contraseña:&nbsp
+                                    {{form.password1}}
+                                    </div>
+                                    <div class="col-sm-6">
+                                       Confirmar contraseña:&nbsp
+                                    {{form.password2}}
+                                    </div>
+                                </div>
+                                </br>
                                 <input type="submit" class="btn btn-primary btn-block" value="Crear">
+                            </br></br>
                                 <hr>
                             </form>
                             
