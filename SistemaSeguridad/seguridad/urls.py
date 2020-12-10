@@ -1,10 +1,11 @@
-from django.urls import path
+from django.urls import path, reverse
 from django.contrib.auth import views as auth_views
-from .views import index, forgot, primer, registrar, login, desbloquear
+from .views import index, forgot, primer, registrar, login, desbloquear, mPuestos
+from django.views.generic.base import RedirectView
 app_name='seguridad'
 
 urlpatterns = [
-   path('',login, name='login') 
+   path('',RedirectView.as_view(url='/admin'))
 ]
 
 seguridad_patterns =[
@@ -13,6 +14,8 @@ seguridad_patterns =[
 	path('index.html/',index,name='index'),
 	path('primerIngreso.html/',primer,name='primer'),
 	path('register.html/',registrar,name='registrar'),
+	path('mntoPuestos.html/',mPuestos,name='mntoPuestos'),
+	
 	
 	#Desde acá comienzo para agregar
 	path('reset_password/',

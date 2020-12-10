@@ -61,3 +61,6 @@ def desbloquear(request):
 
 	context={'form':form}
 	return render(request,"seguridad/desbloquear.html",context)
+
+def mPuestos(request):
+	return render(request,"seguridad/mntoPuestos.html")
