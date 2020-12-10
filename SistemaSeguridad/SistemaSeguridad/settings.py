@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_static',#Para el sistema de autenticacion de dos pasos
     'django_otp.plugins.otp_totp',#Para el sistema de autenticacion de dos pasos
     'two_factor',#Para el sistema de autenticacion de dos pasos
+    'seguridad.apps.SuitConfig',#cambia la vista del admin django 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
