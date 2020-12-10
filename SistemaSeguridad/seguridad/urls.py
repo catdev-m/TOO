@@ -1,12 +1,15 @@
 from django.urls import path, reverse
+from django.views.generic.base import RedirectView
 from django.contrib.auth import views as auth_views
 from .views import index, forgot, primer, registrar, login, desbloquear, mPuestos
 from django.views.generic.base import RedirectView
 app_name='seguridad'
 
 urlpatterns = [
-   path('',RedirectView.as_view(url='/admin'))
+   #path('',RedirectView.as_view(url='/admin')) 
+   path('', index, name='login'),
 ]
+
 
 seguridad_patterns =[
 	path('index.html/', index, name='login'),

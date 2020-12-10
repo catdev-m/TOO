@@ -46,6 +46,12 @@
                                     {% block content %}
 
                                     {% endblock %}
+                                    {# Assumes you setup the password_reset view in your URLconf #}
+                                    <p><a href="{% url 'reset_password' %}">Olvide mi contraseña</a></p>
+                                    <!--Esto es de agregar -->
+                                    <p><a href="{% url 'registrar' %}">Registra una nueva cuenta</a></p>
+                                    <p><a href="{% url 'desbloquear' %}">Desbloquea tu usuario</a></p>
+
                                     <hr>
                                 </div>
                             </div>

@@ -8,10 +8,11 @@ from django.conf import settings
 from seguridad.forms import createUserForm
 from seguridad.forms import desbloqueoUsuario
 from django.contrib.auth.decorators import login_required
+from django_otp.decorators import otp_required
 # Create your views here.
 
 #Vista de la pagina principal
-@login_required
+@otp_required
 def index(request):
 	return render(request,"seguridad/index.html")
 
